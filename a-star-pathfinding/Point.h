@@ -4,6 +4,8 @@ namespace Algorithms::Pathfinding
 {
 	class Point
 	{
+		friend std::ostream& operator<<(std::ostream& os, const Point& point);
+
 	public:
 		Point(int x, int y)
 			: _x(x), _y(y)

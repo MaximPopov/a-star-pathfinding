@@ -9,9 +9,13 @@ namespace Algorithms::Pathfinding
 	public:
 		Map(const std::vector<std::string>& lines);
 
-		bool IsWall(const Point& position) const;
 		int SizeX() const;
 		int SizeY() const;
+		bool IsWall(const Point& position) const;
+		bool IsValidPosition(const Point& position);
+		bool IsValidPath(const std::vector<Point>& path);
+
+		static int GetDistance(const Point& point1, const Point& point2);
 
 	private:
 		std::vector<Point> _walls;
