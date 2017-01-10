@@ -14,48 +14,6 @@ namespace Algorithms::Pathfinding
 		{
 		}
 
-		OpenListItem(const OpenListItem& other)
-			: _position(other._position)
-			, _gScore(other._gScore)
-			, _hScore(other._hScore)
-			, _parent(other._parent)
-		{
-		}
-
-		OpenListItem(OpenListItem&& other)
-			: _position(std::move(other._position))
-			, _gScore(other._gScore)
-			, _hScore(other._hScore)
-			, _parent(other._parent)
-		{
-		}
-
-		OpenListItem& operator= (const OpenListItem& other)
-		{
-			if (this != &other)
-			{
-				_position = other._position;
-				_gScore = other._gScore;
-				_hScore = other._hScore;
-				_parent = other._parent;
-			}
-
-			return *this;
-		}
-
-		OpenListItem& operator= (OpenListItem&& other)
-		{
-			if (this != &other)
-			{
-				_position = std::move(other._position);
-				_gScore = other._gScore;
-				_hScore = other._hScore;
-				_parent = other._parent;
-			}
-
-			return *this;
-		}
-
 		const Point& GetPosition() const { return _position; }
 		int GetGScore() const { return _gScore; }
 		int GetHScore() const { return _hScore; }

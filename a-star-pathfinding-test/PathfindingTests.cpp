@@ -146,6 +146,35 @@ TEST(Pathfinding, ShouldFailIfDestinationIsInvalid)
 	ASSERT_THROW(pathfinder.Find(map, Point(0, 1), Point(4, 5)), std::exception);
 }
 
+TEST(Pathfinding, ShouldFindAWayInAHugeAssMaze)
+{
+	std::vector<std::string> lines =
+	{
+		"   *         *      *     *        **    ",
+		"       * *    *  **  ** *   *         *  ",
+		"   *   *     * *   *     **  **    ***   ",
+		"   *  *   *     ** *  *   **  *  *    ** ",
+		"**       *   ***   * *             * *   ",
+		"      *   *     *         *  ***      * *",
+		"** **  *  * **   * ***  * **    *   *    ",
+		"      * *     *           *     **  ** **",
+		"  ***     ***  ** * * * ***  * ****  *   ",
+		" *   ** *        **  ***  *    *  * *  **",
+		"   *  *  *  ** *     *  ****      * * *  ",
+		"  **  *   * **  * * *  * *  **  ***      ",
+		"  * *  *****      **  ** * *  **  * * * *",
+		"  *          * *   * **     *  * * ** *  "
+	};
+
+	Map map(lines);
+
+	Pathfinder pathfinder;
+	auto pPath = pathfinder.Find(map, Point(0, 0), Point(map.SizeX() - 1, map.SizeY() - 1));
+
+	ASSERT_TRUE(pPath != nullptr);
+	showPath(map, *pPath);
+}
+
 void showPath(const Map& map, const std::vector<Point>& path)
 {
 	std::vector<std::string> lines;

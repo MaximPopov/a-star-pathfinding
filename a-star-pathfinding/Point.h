@@ -7,8 +7,6 @@ namespace Algorithms::Pathfinding
 		friend std::ostream& operator<<(std::ostream& os, const Point& point);
 
 	public:
-		//Point() : Point(0, 0) {}
-
 		Point(int x, int y)
 			: _x(x), _y(y)
 		{
