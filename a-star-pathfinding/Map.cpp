@@ -18,7 +18,7 @@ namespace Algorithms::Pathfinding
 
 			for (int x = 0; x < sizeX; x++)
 			{
-				if (line[x] != ' ')
+				if (line[x] == '*')
 				{
 					_walls.push_back(Point(x, y));
 				}
@@ -41,7 +41,16 @@ namespace Algorithms::Pathfinding
 		return std::find(_walls.begin(), _walls.end(), position) != _walls.end();
 	}
 
-	bool Map::IsValidPath(const std::vector<Point>& path)
+	bool Map::IsOutOfBounds(const Point& position) const
+	{
+		return
+			position.X() < 0 ||
+			position.X() >= _sizeX ||
+			position.Y() < 0 ||
+			position.Y() >= _sizeY;
+	}
+
+	bool Map::IsValidPath(const std::vector<Point>& path) const
 	{
 		if (path.size() == 0)
 		{
@@ -55,15 +64,15 @@ namespace Algorithms::Pathfinding
 		{
 			const Point& point = path[index];
 
-			if (IsWall(point))
+			if (IsOutOfBounds(point))
 			{
-				std::cerr << point << " is a wall.";
+				std::cerr << point << " is out of bounds. Map size: " << _sizeX << " x " << _sizeY;
 				return false;
 			}
 
-			if (point.X() < 0 || point.X() >= _sizeX || point.Y() < 0 || point.Y() >= _sizeY)
+			if (IsWall(point))
 			{
-				std::cerr << point << " is out of bounds. Map size: " << _sizeX << " x " << _sizeY;
+				std::cerr << point << " is a wall.";
 				return false;
 			}
 
